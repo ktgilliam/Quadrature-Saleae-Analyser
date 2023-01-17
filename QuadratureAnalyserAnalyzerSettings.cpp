@@ -25,6 +25,7 @@
 QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 :	mInputChannelA( UNDEFINED_CHANNEL ),
 	mInputChannelB( UNDEFINED_CHANNEL ),
+	mInputChannelZ( UNDEFINED_CHANNEL ),
 	ticksPerRotation( 0 )
 {
 	mInputChannelAInterface.reset( new AnalyzerSettingInterfaceChannel() );
@@ -35,8 +36,13 @@ QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 	mInputChannelBInterface->SetTitleAndTooltip( "Quadrature B", "Standard Quadrature Decoder - input Bi (or right/ccw/last)" );
 	mInputChannelBInterface->SetChannel( mInputChannelB );
 
+	mInputChannelZInterface.reset( new AnalyzerSettingInterfaceChannel() );
+	mInputChannelZInterface->SetTitleAndTooltip( "Quadrature Z", "Standard Quadrature Decoder - input Z (optional index)" );
+	mInputChannelZInterface->SetChannel( mInputChannelZ );
+	mInputChannelZInterface->SetSelectionOfNoneIsAllowed(true);
+
 	mTicksPerRotationInterface.reset( new AnalyzerSettingInterfaceInteger() );
-	mTicksPerRotationInterface->SetTitleAndTooltip( "Impules/rotation",  
+	mTicksPerRotationInterface->SetTitleAndTooltip( "Counts Per Rotation (CPR)",  
 		"Specify the number of changes per full revolution (or some other measure). Set to '0' to ignore - and not do speed/change calculations.");
 	mTicksPerRotationInterface->SetMax( INT_MAX );
 	mTicksPerRotationInterface->SetMin( 0 );
@@ -44,6 +50,7 @@ QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 
 	AddInterface( mInputChannelAInterface.get() );
 	AddInterface( mInputChannelBInterface.get() );
+	AddInterface( mInputChannelZInterface.get() );
 	AddInterface( mTicksPerRotationInterface.get() );
 
 	AddExportOption( 0, "Export as text/csv file" );
@@ -53,6 +60,7 @@ QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 	ClearChannels();
 	AddChannel( mInputChannelA, "Quadrature A", false );
 	AddChannel( mInputChannelB, "Quadrature B", false );
+	AddChannel( mInputChannelZ, "Quadrature Z", false );
 }
 
 QuadratureAnalyserAnalyzerSettings::~QuadratureAnalyserAnalyzerSettings()
@@ -63,11 +71,13 @@ bool QuadratureAnalyserAnalyzerSettings::SetSettingsFromInterfaces()
 {
 	mInputChannelA = mInputChannelAInterface->GetChannel();
 	mInputChannelB = mInputChannelBInterface->GetChannel();
+	mInputChannelZ = mInputChannelZInterface->GetChannel();
 	ticksPerRotation = mTicksPerRotationInterface->GetInteger();
 
 	ClearChannels();
 	AddChannel( mInputChannelA, "Quadrature A", true);
 	AddChannel( mInputChannelB, "Quadrature B", true);
+	AddChannel( mInputChannelZ, "Quadrature Z", true);
 
 	return true;
 }
@@ -76,6 +86,7 @@ void QuadratureAnalyserAnalyzerSettings::UpdateInterfacesFromSettings()
 {
 	mInputChannelAInterface->SetChannel( mInputChannelA );
 	mInputChannelBInterface->SetChannel( mInputChannelB );
+	mInputChannelZInterface->SetChannel( mInputChannelZ );
 	mTicksPerRotationInterface->SetInteger( ticksPerRotation );
 }
 
@@ -86,11 +97,13 @@ void QuadratureAnalyserAnalyzerSettings::LoadSettings( const char* settings )
 
 	text_archive >> mInputChannelA;
 	text_archive >> mInputChannelB;
+	text_archive >> mInputChannelZ;
 	text_archive >> ticksPerRotation;
 
 	ClearChannels();
         AddChannel( mInputChannelA, "Quadrature A", true);
         AddChannel( mInputChannelB, "Quadrature B", true);
+        AddChannel( mInputChannelZ, "Quadrature Z", true);
 
 	UpdateInterfacesFromSettings();
 }
@@ -101,6 +114,7 @@ const char* QuadratureAnalyserAnalyzerSettings::SaveSettings()
 
 	text_archive << mInputChannelA;
 	text_archive << mInputChannelB;
+	text_archive << mInputChannelZ;
 	text_archive << ticksPerRotation;
 
 	return SetReturnString( text_archive.GetString() );
