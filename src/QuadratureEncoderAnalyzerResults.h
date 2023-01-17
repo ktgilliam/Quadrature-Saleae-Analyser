@@ -13,22 +13,22 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  * 
- * $Id: QuadratureAnalyserAnalyzerResults.h 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderAnalyzerResults.h 1037 2011-09-12 09:49:58Z dirkx $
  */
 
-#ifndef QUADRATUREANALYSER_ANALYZER_RESULTS
-#define QUADRATUREANALYSER_ANALYZER_RESULTS
+#ifndef QUADRATUREENCODER_ANALYZER_RESULTS
+#define QUADRATUREENCODER_ANALYZER_RESULTS
 
 #include <AnalyzerResults.h>
 
-class QuadratureAnalyserAnalyzer;
-class QuadratureAnalyserAnalyzerSettings;
+class QuadratureEncoderAnalyzer;
+class QuadratureEncoderAnalyzerSettings;
 
-class QuadratureAnalyserAnalyzerResults : public AnalyzerResults
+class QuadratureEncoderAnalyzerResults : public AnalyzerResults
 {
 public:
-	QuadratureAnalyserAnalyzerResults( QuadratureAnalyserAnalyzer* analyzer, QuadratureAnalyserAnalyzerSettings* settings );
-	virtual ~QuadratureAnalyserAnalyzerResults();
+	QuadratureEncoderAnalyzerResults( QuadratureEncoderAnalyzer* analyzer, QuadratureEncoderAnalyzerSettings* settings );
+	virtual ~QuadratureEncoderAnalyzerResults();
 
 	virtual void GenerateBubbleText( U64 frame_index, Channel& channel, DisplayBase display_base );
 	virtual void GenerateExportFile( const char* file, DisplayBase display_base, U32 export_type_user_id );
@@ -40,8 +40,8 @@ public:
 protected: //functions
 
 protected:  //vars
-	QuadratureAnalyserAnalyzerSettings* mSettings;
-	QuadratureAnalyserAnalyzer* mAnalyzer;
+	QuadratureEncoderAnalyzerSettings* mSettings;
+	QuadratureEncoderAnalyzer* mAnalyzer;
 };
 
-#endif //QUADRATUREANALYSER_ANALYZER_RESULTS
+#endif //QUADRATUREENCODER_ANALYZER_RESULTS

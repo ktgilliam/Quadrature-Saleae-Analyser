@@ -13,25 +13,25 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  * 
- * $Id: QuadratureAnalyserAnalyzerResults.cpp 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderAnalyzerResults.cpp 1037 2011-09-12 09:49:58Z dirkx $
 */
-#include "QuadratureAnalyserAnalyzerResults.h"
+#include "QuadratureEncoderAnalyzerResults.h"
 #include <AnalyzerHelpers.h>
-#include "QuadratureAnalyserAnalyzer.h"
-#include "QuadratureAnalyserAnalyzerSettings.h"
+#include "QuadratureEncoderAnalyzer.h"
+#include "QuadratureEncoderAnalyzerSettings.h"
 #include <iostream>
 #include <fstream>
 #include <iterator>
 #include <algorithm>
 
-QuadratureAnalyserAnalyzerResults::QuadratureAnalyserAnalyzerResults( QuadratureAnalyserAnalyzer* analyzer, QuadratureAnalyserAnalyzerSettings* settings )
+QuadratureEncoderAnalyzerResults::QuadratureEncoderAnalyzerResults( QuadratureEncoderAnalyzer* analyzer, QuadratureEncoderAnalyzerSettings* settings )
 :	AnalyzerResults(),
 	mSettings( settings ),
 	mAnalyzer( analyzer )
 {
 }
 
-QuadratureAnalyserAnalyzerResults::~QuadratureAnalyserAnalyzerResults()
+QuadratureEncoderAnalyzerResults::~QuadratureEncoderAnalyzerResults()
 {
 }
 
@@ -47,7 +47,7 @@ float nunit(char * buff, float f) {
 	return f;
 }
 		
-void QuadratureAnalyserAnalyzerResults::GenerateBubbleText( U64 frame_index, Channel& channel, DisplayBase display_base )
+void QuadratureEncoderAnalyzerResults::GenerateBubbleText( U64 frame_index, Channel& channel, DisplayBase display_base )
 {
         U32 sample_rate = mAnalyzer->GetSampleRate();
 	Frame frame = GetFrame( frame_index );
@@ -137,7 +137,7 @@ void QuadratureAnalyserAnalyzerResults::GenerateBubbleText( U64 frame_index, Cha
 	};
 }
 
-void QuadratureAnalyserAnalyzerResults::GenerateExportFile( const char* file, DisplayBase display_base, U32 export_type_user_id )
+void QuadratureEncoderAnalyzerResults::GenerateExportFile( const char* file, DisplayBase display_base, U32 export_type_user_id )
 {
 	std::ofstream file_stream( file, std::ios::out );
 
@@ -179,17 +179,17 @@ void QuadratureAnalyserAnalyzerResults::GenerateExportFile( const char* file, Di
 	file_stream.close();
 }
 
-void QuadratureAnalyserAnalyzerResults::GenerateFrameTabularText( U64 frame_index, DisplayBase display_base )
+void QuadratureEncoderAnalyzerResults::GenerateFrameTabularText( U64 frame_index, DisplayBase display_base )
 {
 }
 
-void QuadratureAnalyserAnalyzerResults::GeneratePacketTabularText( U64 packet_id, DisplayBase display_base )
+void QuadratureEncoderAnalyzerResults::GeneratePacketTabularText( U64 packet_id, DisplayBase display_base )
 {
 	ClearResultStrings();
 	AddResultString( "not supported" );
 }
 
-void QuadratureAnalyserAnalyzerResults::GenerateTransactionTabularText( U64 transaction_id, DisplayBase display_base )
+void QuadratureEncoderAnalyzerResults::GenerateTransactionTabularText( U64 transaction_id, DisplayBase display_base )
 {
 	ClearResultStrings();
 	AddResultString( "not supported" );

@@ -13,18 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
- * $Id: QuadratureAnalyserSimulationDataGenerator.cpp 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderSimulationDataGenerator.cpp 1037 2011-09-12 09:49:58Z dirkx $
  */
 
-#include "QuadratureAnalyserSimulationDataGenerator.h"
-#include "QuadratureAnalyserAnalyzerSettings.h"
-#include "QuadratureAnalyserAnalyzer.h"
+#include "QuadratureEncoderSimulationDataGenerator.h"
+#include "QuadratureEncoderAnalyzerSettings.h"
+#include "QuadratureEncoderAnalyzer.h"
 
 #include <AnalyzerHelpers.h>
 #include <assert.h>
 #include <random>
 
-QuadratureAnalyserSimulationDataGenerator::QuadratureAnalyserSimulationDataGenerator()
+QuadratureEncoderSimulationDataGenerator::QuadratureEncoderSimulationDataGenerator()
 {
     initialized = false;
     mChannelA = NULL;
@@ -37,11 +37,11 @@ QuadratureAnalyserSimulationDataGenerator::QuadratureAnalyserSimulationDataGener
     speed = 1;
 }
 
-QuadratureAnalyserSimulationDataGenerator::~QuadratureAnalyserSimulationDataGenerator()
+QuadratureEncoderSimulationDataGenerator::~QuadratureEncoderSimulationDataGenerator()
 {
 }
 
-void QuadratureAnalyserSimulationDataGenerator::Initialize( U32 simulation_sample_rate, QuadratureAnalyserAnalyzerSettings* settings )
+void QuadratureEncoderSimulationDataGenerator::Initialize( U32 simulation_sample_rate, QuadratureEncoderAnalyzerSettings* settings )
 {
     mSimulationSampleRateHz = simulation_sample_rate;
     mSettings = settings;
@@ -84,7 +84,7 @@ void QuadratureAnalyserSimulationDataGenerator::Initialize( U32 simulation_sampl
     mClockGenerator.Init( SCANRATE /* 10 to 5k */, simulation_sample_rate );
 }
 
-U32 QuadratureAnalyserSimulationDataGenerator::GenerateSimulationData( U64 largest_sample_requested, U32 sample_rate,
+U32 QuadratureEncoderSimulationDataGenerator::GenerateSimulationData( U64 largest_sample_requested, U32 sample_rate,
                                                                        SimulationChannelDescriptor** simulation_channel )
 {
     U64 adjusted_largest_sample_requested =

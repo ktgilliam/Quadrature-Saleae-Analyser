@@ -12,14 +12,14 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 include(ExternalAnalyzerSDK)
 
 set(SOURCES 
-src/QuadratureAnalyserAnalyzer.cpp
-src/QuadratureAnalyserAnalyzerResults.cpp
-src/QuadratureAnalyserAnalyzerSettings.cpp
-src/QuadratureAnalyserSimulationDataGenerator.cpp
-src/QuadratureAnalyserAnalyzer.h
-src/QuadratureAnalyserAnalyzerResults.h
-src/QuadratureAnalyserAnalyzerSettings.h
-src/QuadratureAnalyserSimulationDataGenerator.h
+src/QuadratureEncoderAnalyzer.cpp
+src/QuadratureEncoderAnalyzerResults.cpp
+src/QuadratureEncoderAnalyzerSettings.cpp
+src/QuadratureEncoderSimulationDataGenerator.cpp
+src/QuadratureEncoderAnalyzer.h
+src/QuadratureEncoderAnalyzerResults.h
+src/QuadratureEncoderAnalyzerSettings.h
+src/QuadratureEncoderSimulationDataGenerator.h
 )
 
 add_analyzer_plugin(${PROJECT_NAME} SOURCES ${SOURCES})

@@ -13,10 +13,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
- * $Id: QuadratureAnalyserAnalyzer.cpp 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderAnalyzer.cpp 1037 2011-09-12 09:49:58Z dirkx $
  */
-#include "QuadratureAnalyserAnalyzer.h"
-#include "QuadratureAnalyserAnalyzerSettings.h"
+#include "QuadratureEncoderAnalyzer.h"
+#include "QuadratureEncoderAnalyzerSettings.h"
 #include <AnalyzerChannelData.h>
 
 static change_t qe_decode(unsigned char olda, unsigned char oldb, unsigned char newa, unsigned char newb)
@@ -48,21 +48,21 @@ static change_t qe_decode(unsigned char olda, unsigned char oldb, unsigned char 
 	return oldnew[state];
 }
 
-QuadratureAnalyserAnalyzer::QuadratureAnalyserAnalyzer()
+QuadratureEncoderAnalyzer::QuadratureEncoderAnalyzer()
 	: Analyzer(),
-	  mSettings(new QuadratureAnalyserAnalyzerSettings())
+	  mSettings(new QuadratureEncoderAnalyzerSettings())
 {
 	SetAnalyzerSettings(mSettings.get());
 }
 
-QuadratureAnalyserAnalyzer::~QuadratureAnalyserAnalyzer()
+QuadratureEncoderAnalyzer::~QuadratureEncoderAnalyzer()
 {
 	KillThread();
 }
 
-void QuadratureAnalyserAnalyzer::WorkerThread()
+void QuadratureEncoderAnalyzer::WorkerThread()
 {
-	mResults.reset(new QuadratureAnalyserAnalyzerResults(this, mSettings.get()));
+	mResults.reset(new QuadratureEncoderAnalyzerResults(this, mSettings.get()));
 	SetAnalyzerResults(mResults.get());
 
 	if (mSettings->mInputChannelA != UNDEFINED_CHANNEL)
@@ -187,24 +187,24 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 	}
 }
 
-bool QuadratureAnalyserAnalyzer::NeedsRerun()
+bool QuadratureEncoderAnalyzer::NeedsRerun()
 {
 	return false;
 }
 
-U32 QuadratureAnalyserAnalyzer::GenerateSimulationData(U64 minimum_sample_index, U32 device_sample_rate, SimulationChannelDescriptor **simulation_channels)
+U32 QuadratureEncoderAnalyzer::GenerateSimulationData(U64 minimum_sample_index, U32 device_sample_rate, SimulationChannelDescriptor **simulation_channels)
 {
 	mSimulationDataGenerator.Initialize(GetSimulationSampleRate(), mSettings.get());
 	return mSimulationDataGenerator.GenerateSimulationData(minimum_sample_index,
 														   device_sample_rate, simulation_channels);
 }
 
-U32 QuadratureAnalyserAnalyzer::GetMinimumSampleRateHz()
+U32 QuadratureEncoderAnalyzer::GetMinimumSampleRateHz()
 {
 	return SCANRATE;
 }
 
-const char *QuadratureAnalyserAnalyzer::GetAnalyzerName() const
+const char *QuadratureEncoderAnalyzer::GetAnalyzerName() const
 {
 	return "Quadrature Decoder";
 }
@@ -217,7 +217,7 @@ const char *GetAnalyzerName()
 
 Analyzer *CreateAnalyzer()
 {
-	return new QuadratureAnalyserAnalyzer();
+	return new QuadratureEncoderAnalyzer();
 }
 
 void DestroyAnalyzer(Analyzer *analyzer)

@@ -13,27 +13,27 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  * 
- * $Id: QuadratureAnalyserAnalyzer.h 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderAnalyzer.h 1037 2011-09-12 09:49:58Z dirkx $
  */
 
-#ifndef QUADRATUREANALYSER_ANALYZER_H
-#define QUADRATUREANALYSER_ANALYZER_H
+#ifndef QUADRATUREENCODER_ANALYZER_H
+#define QUADRATUREENCODER_ANALYZER_H
 
 #include <Analyzer.h>
-#include "QuadratureAnalyserAnalyzerResults.h"
-#include "QuadratureAnalyserSimulationDataGenerator.h"
+#include "QuadratureEncoderAnalyzerResults.h"
+#include "QuadratureEncoderSimulationDataGenerator.h"
 
-#define MYVERSION "QuadratureAnalyser/1.02"
+#define MYVERSION "QuadratureEncoder/1.02"
 
 #define SCANRATE (100)
 enum change_t { STANDSTILL = 0, CLOCKWISE, COUNTERCW, GLITCH };
 
-class QuadratureAnalyserAnalyzerSettings;
-class ANALYZER_EXPORT QuadratureAnalyserAnalyzer : public Analyzer
+class QuadratureEncoderAnalyzerSettings;
+class ANALYZER_EXPORT QuadratureEncoderAnalyzer : public Analyzer
 {
 public:
-	QuadratureAnalyserAnalyzer();
-	virtual ~QuadratureAnalyserAnalyzer();
+	QuadratureEncoderAnalyzer();
+	virtual ~QuadratureEncoderAnalyzer();
 	virtual void WorkerThread();
 
 	virtual U32 GenerateSimulationData( U64 newest_sample_requested, U32 sample_rate, SimulationChannelDescriptor** simulation_channels );
@@ -43,14 +43,14 @@ public:
 	virtual bool NeedsRerun();
 
 protected: //vars
-	std::unique_ptr< QuadratureAnalyserAnalyzerSettings > mSettings;
-	std::unique_ptr< QuadratureAnalyserAnalyzerResults > mResults;
+	std::unique_ptr< QuadratureEncoderAnalyzerSettings > mSettings;
+	std::unique_ptr< QuadratureEncoderAnalyzerResults > mResults;
 
-	QuadratureAnalyserSimulationDataGenerator mSimulationDataGenerator;
+	QuadratureEncoderSimulationDataGenerator mSimulationDataGenerator;
 };
 
 extern "C" ANALYZER_EXPORT const char* __cdecl GetAnalyzerName();
 extern "C" ANALYZER_EXPORT Analyzer* __cdecl CreateAnalyzer( );
 extern "C" ANALYZER_EXPORT void __cdecl DestroyAnalyzer( Analyzer* analyzer );
 
-#endif //QUADRATUREANALYSER_ANALYZER_H
+#endif //QUADRATUREENCODER_ANALYZER_H

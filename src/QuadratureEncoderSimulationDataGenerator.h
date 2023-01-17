@@ -13,30 +13,30 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  * 
- * $Id: QuadratureAnalyserSimulationDataGenerator.h 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderSimulationDataGenerator.h 1037 2011-09-12 09:49:58Z dirkx $
  */
 
-#ifndef QUADRATUREANALYSER_SIMULATION_DATA_GENERATOR
-#define QUADRATUREANALYSER_SIMULATION_DATA_GENERATOR
+#ifndef QUADRATUREEncoder_SIMULATION_DATA_GENERATOR
+#define QUADRATUREEncoder_SIMULATION_DATA_GENERATOR
 
 #include <SimulationChannelDescriptor.h>
 #include <AnalyzerHelpers.h>
 
 #include <string>
 
-class QuadratureAnalyserAnalyzerSettings;
+class QuadratureEncoderAnalyzerSettings;
 
-class QuadratureAnalyserSimulationDataGenerator
+class QuadratureEncoderSimulationDataGenerator
 {
 public:
-	QuadratureAnalyserSimulationDataGenerator();
-	~QuadratureAnalyserSimulationDataGenerator();
+	QuadratureEncoderSimulationDataGenerator();
+	~QuadratureEncoderSimulationDataGenerator();
 
-	void Initialize( U32 simulation_sample_rate, QuadratureAnalyserAnalyzerSettings* settings );
+	void Initialize( U32 simulation_sample_rate, QuadratureEncoderAnalyzerSettings* settings );
 	U32 GenerateSimulationData( U64 newest_sample_requested, U32 sample_rate, SimulationChannelDescriptor** simulation_channel );
 
 protected:
-	QuadratureAnalyserAnalyzerSettings* mSettings;
+	QuadratureEncoderAnalyzerSettings* mSettings;
 
 protected:
 	SimulationChannelDescriptorGroup mQuadratureSimulationChannels;
@@ -55,4 +55,4 @@ protected:
 	int dir;
 	U64 at;
 };
-#endif //QUADRATUREANALYSER_SIMULATION_DATA_GENERATOR
+#endif //QUADRATUREEncoder_SIMULATION_DATA_GENERATOR

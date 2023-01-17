@@ -13,20 +13,20 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
- * $Id: QuadratureAnalyserAnalyzerSettings.h 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderAnalyzerSettings.h 1037 2011-09-12 09:49:58Z dirkx $
  */
 
-#ifndef QUADRATUREANALYSER_ANALYZER_SETTINGS
-#define QUADRATUREANALYSER_ANALYZER_SETTINGS
+#ifndef QUADRATUREENCODER_ANALYZER_SETTINGS
+#define QUADRATUREENCODER_ANALYZER_SETTINGS
 
 #include <AnalyzerSettings.h>
 #include <AnalyzerTypes.h>
 
-class QuadratureAnalyserAnalyzerSettings : public AnalyzerSettings
+class QuadratureEncoderAnalyzerSettings : public AnalyzerSettings
 {
 public:
-	QuadratureAnalyserAnalyzerSettings();
-	virtual ~QuadratureAnalyserAnalyzerSettings();
+	QuadratureEncoderAnalyzerSettings();
+	virtual ~QuadratureEncoderAnalyzerSettings();
 
 	virtual bool SetSettingsFromInterfaces();
 	void UpdateInterfacesFromSettings();
@@ -46,4 +46,4 @@ protected:
 	// std::unique_ptr<AnalyzerSettingInterfaceBoolData> mDirectionInterface;
 };
 
-#endif // QUADRATUREANALYSER_ANALYZER_SETTINGS
+#endif // QUADRATUREENCODER_ANALYZER_SETTINGS

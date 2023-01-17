@@ -13,16 +13,16 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  * 
- * $Id: QuadratureAnalyserAnalyzerSettings.cpp 1037 2011-09-12 09:49:58Z dirkx $
+ * $Id: QuadratureEncoderAnalyzerSettings.cpp 1037 2011-09-12 09:49:58Z dirkx $
  */
 
 #include <climits>
 
-#include "QuadratureAnalyserAnalyzerSettings.h"
+#include "QuadratureEncoderAnalyzerSettings.h"
 #include <AnalyzerHelpers.h>
 
 
-QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
+QuadratureEncoderAnalyzerSettings::QuadratureEncoderAnalyzerSettings()
 :	mInputChannelA( UNDEFINED_CHANNEL ),
 	mInputChannelB( UNDEFINED_CHANNEL ),
 	mInputChannelZ( UNDEFINED_CHANNEL ),
@@ -63,11 +63,11 @@ QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 	AddChannel( mInputChannelZ, "Index Z", false );
 }
 
-QuadratureAnalyserAnalyzerSettings::~QuadratureAnalyserAnalyzerSettings()
+QuadratureEncoderAnalyzerSettings::~QuadratureEncoderAnalyzerSettings()
 {
 }
 
-bool QuadratureAnalyserAnalyzerSettings::SetSettingsFromInterfaces()
+bool QuadratureEncoderAnalyzerSettings::SetSettingsFromInterfaces()
 {
 	mInputChannelA = mInputChannelAInterface->GetChannel();
 	mInputChannelB = mInputChannelBInterface->GetChannel();
@@ -82,7 +82,7 @@ bool QuadratureAnalyserAnalyzerSettings::SetSettingsFromInterfaces()
 	return true;
 }
 
-void QuadratureAnalyserAnalyzerSettings::UpdateInterfacesFromSettings()
+void QuadratureEncoderAnalyzerSettings::UpdateInterfacesFromSettings()
 {
 	mInputChannelAInterface->SetChannel( mInputChannelA );
 	mInputChannelBInterface->SetChannel( mInputChannelB );
@@ -90,7 +90,7 @@ void QuadratureAnalyserAnalyzerSettings::UpdateInterfacesFromSettings()
 	mTicksPerRotationInterface->SetInteger( ticksPerRotation );
 }
 
-void QuadratureAnalyserAnalyzerSettings::LoadSettings( const char* settings )
+void QuadratureEncoderAnalyzerSettings::LoadSettings( const char* settings )
 {
 	SimpleArchive text_archive;
 	text_archive.SetString( settings );
@@ -108,7 +108,7 @@ void QuadratureAnalyserAnalyzerSettings::LoadSettings( const char* settings )
 	UpdateInterfacesFromSettings();
 }
 
-const char* QuadratureAnalyserAnalyzerSettings::SaveSettings()
+const char* QuadratureEncoderAnalyzerSettings::SaveSettings()
 {
 	SimpleArchive text_archive;
 
