@@ -78,7 +78,6 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 
 	U8 mLastA = mChannelA->GetBitState() == BIT_HIGH ? 1 : 0;
 	U8 mLastB = mChannelB->GetBitState() == BIT_HIGH ? 1 : 0;
-	U8 mLastZ = mChannelZ->GetBitState() == BIT_HIGH ? 1 : 0;
 
 	change_t lastDir = GLITCH;
 
@@ -116,7 +115,6 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 		b = mChannelB->GetSampleNumber();
 		U8 mNewA = mLastA;
 		U8 mNewB = mLastB;
-		U8 mNewZ = mLastZ;
 		if (a <= b)
 		{
 			mNewA = mChannelA->GetBitState() == BIT_HIGH ? 1 : 0;
@@ -153,8 +151,6 @@ void QuadratureAnalyserAnalyzer::WorkerThread()
 			glitchCount++;
 			break;
 		};
-
-
 		if (dir != lastDir)
 		{
 			// skip any initial glitches. We're not sure what they are anyway.

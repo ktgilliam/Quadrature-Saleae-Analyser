@@ -43,6 +43,7 @@ protected:
 
 	SimulationChannelDescriptor* mChannelA;
 	SimulationChannelDescriptor* mChannelB;
+	SimulationChannelDescriptor* mChannelZ;
 
 	bool initialized;
 

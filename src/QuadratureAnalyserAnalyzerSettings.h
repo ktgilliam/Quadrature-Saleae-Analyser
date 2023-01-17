@@ -37,14 +37,13 @@ public:
 	Channel mInputChannelB;
 	Channel mInputChannelZ;
 	U32 ticksPerRotation;
-	bool direction; // CW=true, CCW=false
 
 protected:
-	std::auto_ptr<AnalyzerSettingInterfaceChannel> mInputChannelAInterface;
-	std::auto_ptr<AnalyzerSettingInterfaceChannel> mInputChannelBInterface;
-	std::auto_ptr<AnalyzerSettingInterfaceChannel> mInputChannelZInterface;
-	std::auto_ptr<AnalyzerSettingInterfaceInteger> mTicksPerRotationInterface;
-	std::auto_ptr<AnalyzerSettingInterfaceBoolData> mDirectionInterface;
+	std::unique_ptr<AnalyzerSettingInterfaceChannel> mInputChannelAInterface;
+	std::unique_ptr<AnalyzerSettingInterfaceChannel> mInputChannelBInterface;
+	std::unique_ptr<AnalyzerSettingInterfaceChannel> mInputChannelZInterface;
+	std::unique_ptr<AnalyzerSettingInterfaceInteger> mTicksPerRotationInterface;
+	// std::unique_ptr<AnalyzerSettingInterfaceBoolData> mDirectionInterface;
 };
 
 #endif // QUADRATUREANALYSER_ANALYZER_SETTINGS

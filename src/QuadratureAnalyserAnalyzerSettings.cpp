@@ -29,15 +29,15 @@ QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 	ticksPerRotation( 0 )
 {
 	mInputChannelAInterface.reset( new AnalyzerSettingInterfaceChannel() );
-	mInputChannelAInterface->SetTitleAndTooltip( "Quadrature A", "Standard Quadrature Decoder - input A (or left/cw/first)" );
+	mInputChannelAInterface->SetTitleAndTooltip( "Quad A", "Standard Quadrature Decoder - input A (or left/cw/first)" );
 	mInputChannelAInterface->SetChannel( mInputChannelA );
 
 	mInputChannelBInterface.reset( new AnalyzerSettingInterfaceChannel() );
-	mInputChannelBInterface->SetTitleAndTooltip( "Quadrature B", "Standard Quadrature Decoder - input Bi (or right/ccw/last)" );
+	mInputChannelBInterface->SetTitleAndTooltip( "Quad B", "Standard Quadrature Decoder - input Bi (or right/ccw/last)" );
 	mInputChannelBInterface->SetChannel( mInputChannelB );
 
 	mInputChannelZInterface.reset( new AnalyzerSettingInterfaceChannel() );
-	mInputChannelZInterface->SetTitleAndTooltip( "Quadrature Z", "Standard Quadrature Decoder - input Z (optional index)" );
+	mInputChannelZInterface->SetTitleAndTooltip( "Index Z", "Standard Quadrature Decoder - input Z (optional index)" );
 	mInputChannelZInterface->SetChannel( mInputChannelZ );
 	mInputChannelZInterface->SetSelectionOfNoneIsAllowed(true);
 
@@ -58,9 +58,9 @@ QuadratureAnalyserAnalyzerSettings::QuadratureAnalyserAnalyzerSettings()
 	AddExportExtension( 0, "csv", "csv" );
 
 	ClearChannels();
-	AddChannel( mInputChannelA, "Quadrature A", false );
-	AddChannel( mInputChannelB, "Quadrature B", false );
-	AddChannel( mInputChannelZ, "Quadrature Z", false );
+	AddChannel( mInputChannelA, "Quad A", false );
+	AddChannel( mInputChannelB, "Quad B", false );
+	AddChannel( mInputChannelZ, "Index Z", false );
 }
 
 QuadratureAnalyserAnalyzerSettings::~QuadratureAnalyserAnalyzerSettings()
@@ -75,9 +75,9 @@ bool QuadratureAnalyserAnalyzerSettings::SetSettingsFromInterfaces()
 	ticksPerRotation = mTicksPerRotationInterface->GetInteger();
 
 	ClearChannels();
-	AddChannel( mInputChannelA, "Quadrature A", true);
-	AddChannel( mInputChannelB, "Quadrature B", true);
-	AddChannel( mInputChannelZ, "Quadrature Z", true);
+	AddChannel( mInputChannelA, "Quad A", true);
+	AddChannel( mInputChannelB, "Quad B", true);
+	AddChannel( mInputChannelZ, "Index Z", true);
 
 	return true;
 }
@@ -101,9 +101,9 @@ void QuadratureAnalyserAnalyzerSettings::LoadSettings( const char* settings )
 	text_archive >> ticksPerRotation;
 
 	ClearChannels();
-        AddChannel( mInputChannelA, "Quadrature A", true);
-        AddChannel( mInputChannelB, "Quadrature B", true);
-        AddChannel( mInputChannelZ, "Quadrature Z", true);
+        AddChannel( mInputChannelA, "Quad A", true);
+        AddChannel( mInputChannelB, "Quad B", true);
+        AddChannel( mInputChannelZ, "Index Z", true);
 
 	UpdateInterfacesFromSettings();
 }

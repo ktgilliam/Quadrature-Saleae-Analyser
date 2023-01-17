@@ -26,7 +26,7 @@
 #define MYVERSION "QuadratureAnalyser/1.02"
 
 #define SCANRATE (100)
-typedef enum change_t { STANDSTILL = 0, CLOCKWISE, COUNTERCW, GLITCH };
+enum change_t { STANDSTILL = 0, CLOCKWISE, COUNTERCW, GLITCH };
 
 class QuadratureAnalyserAnalyzerSettings;
 class ANALYZER_EXPORT QuadratureAnalyserAnalyzer : public Analyzer
@@ -43,8 +43,8 @@ public:
 	virtual bool NeedsRerun();
 
 protected: //vars
-	std::auto_ptr< QuadratureAnalyserAnalyzerSettings > mSettings;
-	std::auto_ptr< QuadratureAnalyserAnalyzerResults > mResults;
+	std::unique_ptr< QuadratureAnalyserAnalyzerSettings > mSettings;
+	std::unique_ptr< QuadratureAnalyserAnalyzerResults > mResults;
 
 	QuadratureAnalyserSimulationDataGenerator mSimulationDataGenerator;
 };
